@@ -11,14 +11,28 @@ env:
   SVD2RUST_VERSION: 0.31.5
 
 jobs:
-
   check:
-
     strategy:
       fail-fast: false
       matrix:
         mcu: [bcm2835, bcm2837, bcm2711]
-        rust-version: [1.76.0, 1.77.2, 1.78.0, 1.79.0, 1.80.1, 1.81.0, 1.82.0, 1.83.0, 1.84.0]
+        rust-version:
+          [
+            1.76.0,
+            1.77.2,
+            1.78.0,
+            1.79.0,
+            1.80.1,
+            1.81.0,
+            1.82.0,
+            1.83.0,
+            1.84.1,
+            1.85.1,
+            1.86.0,
+            1.87.0,
+            1.88.0,
+            1.89.0,
+          ]
 
     runs-on: ubuntu-latest
 
@@ -63,7 +77,6 @@ jobs:
         run: cargo clean --verbose
 
   windows-gen:
-
     strategy:
       fail-fast: false
       matrix:
