@@ -42,7 +42,7 @@ jobs:
           submodules: recursive
 
       - name: Setup Rust and Cargo
-        uses: moonrepo/setup-rust@v1.2
+        uses: moonrepo/setup-rust@v1.3
         with:
           channel: ${{ matrix.rust-version }}
           components: rust-docs,rustfmt
@@ -93,7 +93,7 @@ jobs:
           submodules: recursive
 
       - name: Setup Rust and Cargo
-        uses: moonrepo/setup-rust@v1.2
+        uses: moonrepo/setup-rust@v1.3
         with:
           channel: ${{ env.RUST_VERSION }}
           components: rust-docs,rustfmt,clippy
