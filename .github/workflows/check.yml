@@ -8,7 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  SVD2RUST_VERSION: 0.37.1
+  SVD2RUST_VERSION: field-sort
 
 jobs:
   check:
@@ -18,9 +18,6 @@ jobs:
         mcu: [bcm2835, bcm2837, bcm2711]
         rust-version:
           [
-            1.85.1,
-            1.86.0,
-            1.87.0,
             1.88.0,
             1.89.0,
             1.90.0,
@@ -47,13 +44,16 @@ jobs:
           channel: ${{ matrix.rust-version }}
           components: rust-docs,rustfmt
           targets: aarch64-unknown-none
-          bins: svd2rust@${{ env.SVD2RUST_VERSION }},form
+          bins: form
           # Caching `build/pacs/${{ matrix.mcu }}-lpa/target` is useless
           # since our PAC generation script (`gen-pac.sh`) removes it.
           # Therefore, we will remove the contents of the directory at the end.
           target-dirs: build/pacs/${{ matrix.mcu }}-lpa/target
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Svd2rust
+        run: cargo install svd2rust --git https://github.com/rust-embedded/svd2rust.git --branch ${{ env.SVD2RUST_VERSION }}
 
       - name: Setup Jinja2 CLI
         run: pip3 install jinja2-cli toml
