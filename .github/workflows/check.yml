@@ -98,10 +98,13 @@ jobs:
           channel: ${{ env.RUST_VERSION }}
           components: rust-docs,rustfmt,clippy
           targets: aarch64-unknown-none
-          bins: svd2rust@${{ env.SVD2RUST_VERSION }},form
+          bins: form
           target-dirs: build/pacs/${{ matrix.mcu }}-lpa/target
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Svd2rust
+        run: cargo install svd2rust --git https://github.com/rust-embedded/svd2rust.git --branch ${{ env.SVD2RUST_VERSION }}
 
       - name: Setup Jinja2 CLI
         run: pip3 install jinja2-cli toml
