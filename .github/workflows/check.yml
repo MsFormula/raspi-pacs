@@ -8,7 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  SVD2RUST_VERSION: 0.37.0
+  SVD2RUST_VERSION: 0.36.1
 
 jobs:
   check:
