@@ -57,3 +57,4 @@ mkdir src
 form -i lib.rs -o src/
 rm lib.rs
 cargo fmt
+cargo check
