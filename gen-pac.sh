@@ -47,13 +47,7 @@ find pac-template -exec sh -ec "
 
 # Generate the crate source code from the SVD file.
 
-svd2rust -i "build/svds/${mcu_name}.svd" --sort-fields=reverse --target none --atomics \
-    --atomics-feature atomic --impl_debug --impl-defmt defmt -o "$pac_path"
-
-# Format the source code.
+svd2pac "build/svds/${mcu_name}.svd" "$pac_path" --license-file LICENSE
 
 cd "$pac_path"
-mkdir src
-form -i lib.rs -o src/
-rm lib.rs
-cargo fmt
+cargo check
