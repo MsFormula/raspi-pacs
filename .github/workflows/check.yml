@@ -135,6 +135,7 @@ jobs:
       - name: Generate SVDs and PACs for MCUs
         run: |
           for mcu in bcm2835 bcm2837 bcm2711
+          do
             make build/svds/${mcu}.svd
             make build/pacs/${mcu}-lpa
             rm -rf build/pacs/${mcu}-lpa/target
