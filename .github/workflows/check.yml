@@ -108,3 +108,48 @@ jobs:
 
       - name: Generate PAC
         run: make build/pacs/${{ matrix.mcu }}-lpa
+
+  build:
+    runs-on: ubuntu-latest
+    needs: check
+    if: ${{ github.event_name == 'push' }}
+    env:
+      RUST_VERSION: 1.98.0
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Setup Rust and Cargo
+        uses: moonrepo/setup-rust@v1.3
+        with:
+          channel: ${{ env.RUST_VERSION }}
+          bins: svd2pac&${{ env.SVD2PAC_VERSION }},form
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Jinja2 CLI
+        run: pip3 install jinja2-cli toml
+
+      - name: Generate SVDs and PACs for MCUs
+        run: |
+          for mcu in bcm2835 bcm2837 bcm2711
+            make build/svds/${mcu}.svd
+            make build/pacs/${mcu}-lpa
+            rm -rf build/pacs/${mcu}-lpa/target
+          done
+
+      - name: Commit artifacts
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add build
+          git stash
+          git fetch origin main-build
+          git checkout origin/main-build
+          git merge --no-commit --no-ff origin/main
+          git checkout stash -- .
+          git add build
+          git commit -m "Artifacts for ${GITHUB_REF} at ${GITHUB_SHA}"
+          git push origin HEAD:${GITHUB_REF}-build
