@@ -148,7 +148,7 @@ jobs:
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git fetch origin main-build --target
+          git fetch origin main-build
           git checkout -B main-build origin/main-build || git checkout --orphan main-build
           git checkout ${{ github.sha }} -- .
           git add -f build
