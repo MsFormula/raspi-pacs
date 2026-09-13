@@ -151,7 +151,7 @@ jobs:
           git stash
           git fetch origin main-build
           git checkout origin/main-build
-          git merge --no-commit --no-ff origin/main
+          git merge --no-commit --no-ff --allow-unrelated-histories origin/main
           git checkout stash -- .
           git add -f build
           git commit -m "Artifacts for ${GITHUB_REF} at ${GITHUB_SHA}"
