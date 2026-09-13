@@ -125,6 +125,8 @@ jobs:
         uses: moonrepo/setup-rust@v1.3
         with:
           channel: ${{ env.RUST_VERSION }}
+          components: rust-docs,rustfmt
+          targets: aarch64-unknown-none
           bins: svd2pac@${{ env.SVD2PAC_VERSION }},form
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
