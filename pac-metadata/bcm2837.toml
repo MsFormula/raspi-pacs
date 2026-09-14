@@ -4,4 +4,4 @@ name_pretty = "BCM2837"
 found_in = "Raspberry Pi 3 and Zero 2W"
 
 [crate]
-version = "0.5.0"
+version = "1.0.0"
