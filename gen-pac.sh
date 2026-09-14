@@ -22,28 +22,18 @@ mkdir -p "$pac_path"
 
 # Generate the crate metadata from the templates.
 
-find pac-template -exec sh -ec "
-    path=\$1
+find pac-template -mindepth 1 | while IFS= read -r path; do
+    rel_path=${path#pac-template/}
 
-    path_no_pac_template=\${path#pac-template/}
-    if [ \"\$path_no_pac_template\" = \"\$path\" ]; then
-        exit
-    fi
-    path=\$path_no_pac_template
-
-    if [ -d \"\$1\" ]; then
-        mkdir -p \"$pac_path/\$path\"
+    if [ -d "$path" ]; then
+        mkdir -p "$pac_path/$rel_path"
+    elif [ "${rel_path%.jinja}" != "$rel_path" ]; then
+        rel_path=${rel_path%.jinja}
+        jinja2 --strict -o "$pac_path/$rel_path" "$path" "pac-metadata/$mcu_name.toml"
     else
-        path_no_jinja=\${path%.jinja}
-        if [ \"\$path_no_jinja\" != \"\$path\" ]; then
-            path=\$path_no_jinja
-            jinja2 --strict -o \"$pac_path/\$path\" \"\$1\" \\
-                \"pac-metadata/$mcu_name.toml\"
-        else
-            cp \"\$1\" \"$pac_path/\$path\"
-        fi
+        cp "$path" "$pac_path/$rel_path"
     fi
-" sh {} \;
+done
 
 # Generate the crate source code from the SVD file.
 
