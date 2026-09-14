@@ -6,6 +6,9 @@ on:
       - main-build
   pull_request:
 
+permissions:
+  contents: write
+
 env:
   CARGO_TERM_COLOR: always
   SVD2PAC_VERSION: 0.7.0
