@@ -10,12 +10,8 @@ license = "LICENSE.txt"
 keywords = ["raspberrypi", "{{ mcu.name }}", "pac", "no_std"]
 categories = ["embedded", "hardware-support", "no-std", "no-std::no-alloc"]
 
-[package.metadata.docs.rs]
-features = ["all"]
-
-[features]
-rt = []
-
 [lib]
 test = false
 bench = false
+
+[features]

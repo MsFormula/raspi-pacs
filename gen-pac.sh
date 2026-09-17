@@ -24,6 +24,11 @@ mkdir -p "$pac_path"
 
 svd2pac "build/svds/${mcu_name}.svd" "$pac_path" --license-file LICENSE
 
+# Copy features list
+
+touch features.txt
+awk '/^\[features\]/{flag=1; next} flag' "$pac_path/Cargo.toml" >> features.txt
+
 # Generate the crate metadata from the templates.
 
 find pac-template -mindepth 1 | while IFS= read -r path; do
@@ -38,6 +43,11 @@ find pac-template -mindepth 1 | while IFS= read -r path; do
         cp "$path" "$pac_path/$rel_path"
     fi
 done
+
+# append features
+
+cat features.txt >> $pac_path/Cargo.toml
+rm features.txt
 
 cd "$pac_path"
 cargo check
