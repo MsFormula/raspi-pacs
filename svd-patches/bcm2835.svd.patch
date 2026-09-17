@@ -1,0 +1,12 @@
+--- a/bcm2835.svd	2025-01-19 16:16:02.648443201 +0800
++++ b/bcm2835.svd	2025-01-19 16:15:54.415345321 +0800
+@@ -12,6 +12,9 @@
+         <revision>r0p0</revision>
+         <endian>little</endian>
+         <nvicPrioBits>2</nvicPrioBits>
++        <mpuPresent>true</mpuPresent>
++        <fpuPresent>true</fpuPresent>
++        <vendorSystickConfig>false</vendorSystickConfig>
+     </cpu>
+     <headerSystemFilename>system_bcm2835</headerSystemFilename>
+     <addressUnitBits>8</addressUnitBits>

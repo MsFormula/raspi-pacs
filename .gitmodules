@@ -1,0 +1,4 @@
+[submodule "broadcom-peripherals"]
+	path = broadcom-peripherals
+	url = https://github.com/adafruit/broadcom-peripherals.git
+	branch = main-build

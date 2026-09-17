@@ -1,0 +1,7 @@
+[mcu]
+name = "bcm2711"
+name_pretty = "BCM2711"
+found_in = "Raspberry Pi 4"
+
+[crate]
+version = "1.0.0"
