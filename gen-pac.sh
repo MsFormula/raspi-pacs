@@ -20,6 +20,10 @@ pac_path=$BUILD_DIR/pacs/${mcu_name}-lpa
 rm -rf "$pac_path"
 mkdir -p "$pac_path"
 
+# Generate the crate source code from the SVD file.
+
+svd2pac "build/svds/${mcu_name}.svd" "$pac_path" --license-file LICENSE
+
 # Generate the crate metadata from the templates.
 
 find pac-template -mindepth 1 | while IFS= read -r path; do
@@ -34,10 +38,6 @@ find pac-template -mindepth 1 | while IFS= read -r path; do
         cp "$path" "$pac_path/$rel_path"
     fi
 done
-
-# Generate the crate source code from the SVD file.
-
-svd2pac "build/svds/${mcu_name}.svd" "$pac_path" --license-file LICENSE
 
 cd "$pac_path"
 cargo check

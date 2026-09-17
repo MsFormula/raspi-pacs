@@ -18,8 +18,7 @@ This PAC expects the memory-mapped registers of the peripherals
 to be present on their physical addresses;
 therefore, this PAC integrates poorly with virtual memory.
 If the register files are offset-mapped to a different base address,
-it is advised to generate the PAC by yourself from our patched SVD file
-and using the `--base-address-shift` option of `svd2rust`.
+it is advised to generate the PAC by yourself from our patched SVD file.
 See the
 [repository-level README](https://github.com/abt8601/raspi-pacs/blob/main/README.md)
 for more information on generating PACs.
