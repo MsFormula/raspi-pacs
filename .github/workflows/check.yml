@@ -47,13 +47,16 @@ jobs:
           channel: ${{ matrix.rust-version }}
           components: rust-docs,rustfmt
           targets: aarch64-unknown-none
-          bins: svd2pac@${{ env.SVD2PAC_VERSION }},form
+          bins: form
           # Caching `build/pacs/${{ matrix.mcu }}-lpa/target` is useless
           # since our PAC generation script (`gen-pac.sh`) removes it.
           # Therefore, we will remove the contents of the directory at the end.
           target-dirs: build/pacs/${{ matrix.mcu }}-lpa/target
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup SVD2PAC
+        run: cargo install --git https://github.com/Infineon/svd2pac.git --branch main svd2pac
 
       - name: Setup Jinja2 CLI
         run: pip3 install jinja2-cli toml
@@ -98,10 +101,13 @@ jobs:
           channel: ${{ env.RUST_VERSION }}
           components: rust-docs,rustfmt,clippy
           targets: aarch64-unknown-none
-          bins: svd2pac@${{ env.SVD2PAC_VERSION }},form
+          bins: form
           target-dirs: build/pacs/${{ matrix.mcu }}-lpa/target
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup SVD2PAC
+        run: cargo install --git https://github.com/Infineon/svd2pac.git --branch main svd2pac
 
       - name: Setup Jinja2 CLI
         run: pip3 install jinja2-cli toml
@@ -131,9 +137,12 @@ jobs:
           channel: ${{ env.RUST_VERSION }}
           components: rust-docs,rustfmt
           targets: aarch64-unknown-none
-          bins: svd2pac@${{ env.SVD2PAC_VERSION }},form
+          bins: form
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup SVD2PAC
+        run: cargo install --git https://github.com/Infineon/svd2pac.git --branch main svd2pac
 
       - name: Setup Jinja2 CLI
         run: pip3 install jinja2-cli toml
