@@ -1,0 +1,17 @@
+[package]
+name = "{{ mcu.name }}-lpa"
+version = "{{ crate.version }}"
+authors = ["Po-Yi Tsai <abt8601@protonmail.ch>", "June Fitzloff <junefitzloff@gmail.com>"]
+edition = "2024"
+rust-version = "1.85.0"
+description = "Peripheral access crate for {{ mcu.name_pretty }} found in the {{ mcu.found_in }}."
+repository = "https://github.com/MsFormula/raspi-pacs"
+license-file = "LICENSE.txt"
+keywords = ["raspberrypi", "{{ mcu.name }}", "pac", "no_std"]
+categories = ["embedded", "hardware-support", "no-std", "no-std::no-alloc"]
+
+[lib]
+test = false
+bench = false
+
+[features]

@@ -1,0 +1,7 @@
+[mcu]
+name = "bcm2837"
+name_pretty = "BCM2837"
+found_in = "Raspberry Pi 3 and Zero 2W"
+
+[crate]
+version = "1.0.0"

@@ -1,0 +1,62 @@
+[package]
+name = "bcm2711-lpa"
+version = "1.0.0"
+authors = ["Po-Yi Tsai <abt8601@protonmail.ch>", "June Fitzloff <junefitzloff@gmail.com>"]
+edition = "2024"
+rust-version = "1.85.0"
+description = "Peripheral access crate for BCM2711 found in the Raspberry Pi 4."
+repository = "https://github.com/MsFormula/raspi-pacs"
+license-file = "LICENSE.txt"
+keywords = ["raspberrypi", "bcm2711", "pac", "no_std"]
+categories = ["embedded", "hardware-support", "no-std", "no-std::no-alloc"]
+
+[lib]
+test = false
+bench = false
+
+[features]
+
+vcmailbox = []
+cm_pcm = []
+cm_pwm = ["cm_pcm"]
+gpio = []
+systmr = []
+uart0 = []
+uart2 = ["uart0"]
+uart3 = ["uart0"]
+uart4 = ["uart0"]
+uart5 = ["uart0"]
+spi0 = []
+spi3 = ["spi0"]
+spi4 = ["spi0"]
+spi5 = ["spi0"]
+spi6 = ["spi0"]
+pactl = []
+bsc0 = []
+bsc1 = ["bsc0"]
+bsc3 = ["bsc0"]
+bsc4 = ["bsc0"]
+bsc5 = ["bsc0"]
+bsc6 = ["bsc0"]
+pwm0 = []
+pwm1 = ["pwm0"]
+aux = []
+uart1 = []
+spi1 = []
+spi2 = ["spi1"]
+lic = []
+gic_dist = []
+gic_cpu = []
+usb_otg_global = []
+usb_otg_host = []
+usb_otg_device = []
+usb_otg_pwrclk = []
+emmc = []
+emmc2 = ["emmc"]
+dma = []
+pcm = []
+
+all = ["vcmailbox" ,"cm_pcm" ,"cm_pwm" ,"gpio" ,"systmr" ,"uart0" ,"uart2" ,"uart3" ,"uart4" ,"uart5" ,"spi0" ,"spi3" ,"spi4" ,"spi5" ,"spi6" ,"pactl" ,"bsc0" ,"bsc1" ,"bsc3" ,"bsc4" ,"bsc5" ,"bsc6" ,"pwm0" ,"pwm1" ,"aux" ,"uart1" ,"spi1" ,"spi2" ,"lic" ,"gic_dist" ,"gic_cpu" ,"usb_otg_global" ,"usb_otg_host" ,"usb_otg_device" ,"usb_otg_pwrclk" ,"emmc" ,"emmc2" ,"dma" ,"pcm"]
+
+[package.metadata.docs.rs]
+features = ["all"]

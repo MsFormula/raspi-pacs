@@ -1,0 +1,47 @@
+[package]
+name = "bcm2835-lpa"
+version = "1.0.0"
+authors = ["Po-Yi Tsai <abt8601@protonmail.ch>", "June Fitzloff <junefitzloff@gmail.com>"]
+edition = "2024"
+rust-version = "1.85.0"
+description = "Peripheral access crate for BCM2835 found in the Raspberry Pi 1 and Zero."
+repository = "https://github.com/MsFormula/raspi-pacs"
+license-file = "LICENSE.txt"
+keywords = ["raspberrypi", "bcm2835", "pac", "no_std"]
+categories = ["embedded", "hardware-support", "no-std", "no-std::no-alloc"]
+
+[lib]
+test = false
+bench = false
+
+[features]
+
+vcmailbox = []
+pm = []
+cm_pcm = []
+cm_pwm = ["cm_pcm"]
+gpio = []
+systmr = []
+uart0 = []
+spi0 = []
+bsc0 = []
+pwm0 = []
+bsc1 = ["bsc0"]
+bsc2 = ["bsc0"]
+aux = []
+uart1 = []
+spi1 = []
+spi2 = ["spi1"]
+lic = []
+usb_otg_global = []
+usb_otg_host = []
+usb_otg_device = []
+usb_otg_pwrclk = []
+emmc = []
+dma = []
+pcm = []
+
+all = ["vcmailbox" ,"pm" ,"cm_pcm" ,"cm_pwm" ,"gpio" ,"systmr" ,"uart0" ,"spi0" ,"bsc0" ,"pwm0" ,"bsc1" ,"bsc2" ,"aux" ,"uart1" ,"spi1" ,"spi2" ,"lic" ,"usb_otg_global" ,"usb_otg_host" ,"usb_otg_device" ,"usb_otg_pwrclk" ,"emmc" ,"dma" ,"pcm"]
+
+[package.metadata.docs.rs]
+features = ["all"]
