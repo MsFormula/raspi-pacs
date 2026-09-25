@@ -61,9 +61,6 @@ jobs:
       - name: Setup Jinja2 CLI
         run: pip3 install jinja2-cli toml
 
-      - name: Generate SVD file
-        run: make build/svds/${{ matrix.mcu }}.svd
-
       - name: Generate PAC
         run: make build/pacs/${{ matrix.mcu }}-lpa
 

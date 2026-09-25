@@ -10,9 +10,8 @@ all: svds pacs
 
 svds: $(MCUS:%=$(BUILD_DIR)/svds/%.svd)
 
-$(BUILD_DIR)/svds/%.svd: broadcom-peripherals/svd/gen/%_lpa.svd svd-patches/%.svd.patch | $(BUILD_DIR)/svds
+$(BUILD_DIR)/svds/%.svd: broadcom-peripherals/svd/gen/%_lpa.svd | $(BUILD_DIR)/svds
 	cp $< $@
-	patch $@ svd-patches/$*.svd.patch
 
 $(BUILD_DIR)/svds:
 	@mkdir -p $@
