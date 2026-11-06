@@ -45,7 +45,7 @@ impl super::UsbOtgDevice {
     #[doc = "`ptr` must point at a register block with this layout."]
     #[inline(always)]
     pub const unsafe fn from_ptr(ptr: *mut u8) -> Self {
-        Self { ptr: ptr as _ };
+        Self { ptr: ptr as _ }
     }
 
     #[allow(unused)]

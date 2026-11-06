@@ -1,6 +1,6 @@
 [package]
 name = "bcm2711-lpa"
-version = "1.0.2"
+version = "1.0.3"
 authors = ["Po-Yi Tsai <abt8601@protonmail.ch>", "June Fitzloff <junefitzloff@gmail.com>"]
 edition = "2024"
 rust-version = "1.85.0"

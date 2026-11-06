@@ -41,6 +41,13 @@ use crate::common::{
 unsafe impl ::core::marker::Send for super::Pwm0 {}
 unsafe impl ::core::marker::Sync for super::Pwm0 {}
 impl super::Pwm0 {
+    #[doc = "# Safety"]
+    #[doc = "`ptr` must point at a register block with this layout."]
+    #[inline(always)]
+    pub const unsafe fn from_ptr(ptr: *mut u8) -> Self {
+        Self { ptr: ptr as _ }
+    }
+
     #[allow(unused)]
     #[inline(always)]
     pub(crate) const fn _svd2pac_as_ptr(&self) -> *mut u8 {
